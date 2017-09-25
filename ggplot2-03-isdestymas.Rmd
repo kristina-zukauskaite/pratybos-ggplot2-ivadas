@@ -24,6 +24,7 @@ Klases išdėstome spalvų skalėje
 ```{r}
  ggplot(data = mpg) + 
     geom_point(mapping = aes(x = displ, y = hwy, color = class)) 
+# Legenda pridedama automatiškai
 ```
 
 Klases išdėstome dydžių skalėje
@@ -41,11 +42,13 @@ Kitos skalės išdėstymui
 # alpha – permatomumo skalė
 ggplot(data = mpg) + 
     geom_point(mapping = aes(x = displ, y = hwy, alpha = class)) 
+# alpha - permatomumas
 ```
 ```{r}
 # shape – formų skalė
  ggplot(data = mpg) +
    geom_point(mapping = aes(x = displ, y = hwy, shape = class)) 
+# Braižoma iki 6 formų tik 
 ```
 
 Estetinių savybių parinkimas rankiniu būdu
@@ -54,9 +57,11 @@ Estetinių savybių parinkimas rankiniu būdu
 ```{r}
 ggplot(data = mpg) + 
      geom_point(mapping = aes(x = displ, y = hwy), color = "blue") 
+# color išimame iš funkcijos, nuspalvimai visi taškai 
 ```
 
 Kaip nurodyti spalvas?
+# skaičiai nurodo atspalvius
 ----------------------------------------------------------------------------- 
 Spalvų kodų parinkimas:
 https://www.w3schools.com/colors/colors_picker.asp
@@ -70,18 +75,32 @@ Užduotys: estetinis išdėstymas
 
 ```{r}
 ggplot(data = mpg) + 
-  geom_point(mapping = aes(x = displ, y = hwy, color = "blue"))
+  geom_point(mapping = aes(x = displ, y = hwy), color = "blue")
+# blue iskelti uz skliausteliu
 ```
 
 2. Kurie lentelės `mpg` kintamieji yra kategoriniai? Kurie – tolydieji? (Užuomina: `?mpg`). Kaip tai pamatyti atspausdinus `mpg`?
 
 ```{r}
-
+?mpg
+# manufacturer - kategorinis
+# model - kategorinis
+# displacement - kiekybinis tolydusis
+# year - kiekybinis dikretusis
+# number of cylinders - kiekybinis diskretusis
 ```
 
 3. Pasirinkite tolydųjį kintamąjį ir atidėkite jo reikšmes šiose skalėse: `color`, `size`, `shape`. 
 
 ```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy), color = "blue")
+
+#ggplot(data = mpg) + 
+  #geom_point(mapping = aes(x = displ, y = cty), size = "hwy")
+
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy), shape = "year")
 
 ```
 
@@ -89,16 +108,24 @@ ggplot(data = mpg) +
 
 
 ```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = class, y = hwy), color = "blue")
 
-```
-```{r}
+ggplot(data = mpg) + 
+ geom_point(mapping = aes(x = class, y = cty), shape = "fl")
 
+ggplot(data = mpg) + 
+ geom_point(mapping = aes(x = class, y = trans), size = "cty")
 ```
 
 
 5. Ką daro estetikos elementas `stroke`? Su kuriomis formomis jis veikia? (Užuomina: naudokite `geom_point`).
 
 ```{r}
+ggplot(data = mpg) + 
+ geom_point(mapping = aes(x = displ, y = cty), stroke = 4)
+# Naudotis help butinai. Stroke - taškų dydis
+
 
 ```
 
@@ -106,18 +133,27 @@ ggplot(data = mpg) +
 6. Kas nutinka, jei naudojate kelias skales (pvz., `color`, `size`) su keliais skirtingais kintamaisiais?
 
 ```{r}
+# Kelios skalės sudedamos į dvi legendas
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy), color = "blue") +
+ geom_point(mapping = aes(x = cyl, y = hwy), shape = "year")
 
 ```
 
 7. Kas nutinka, jei to paties kintamojo reikšmes atidedate keliose skirtingose skalėse (tarkime, `color` ir `shape`)?
 
 ```{r}
-
+# Sudedama į vieną legendą
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy), color = "blue", shape = "year")
 ```
 
 8. Kas nutinka, jei su tam tikra skale susiejate ne konkretaus kintamojo pavadinimą (pvz., `aes(colour = displ)`), o kokį nors veiksmą su tuo kintamuoju, tarkime `aes(colour = displ < 5)`?
 
 ```{r}
+# Galima rašyti. 
+#ggplot(data = mpg) + 
+  #geom_point(mapping = aes(color = as.factor(displ))
 
 ```
 
@@ -127,6 +163,23 @@ ggplot(data = mpg) +
     * spalvų numerius tarp 1 ir 8, be kabučių.
     
 ```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy), color = "green")
 
 ```
-    
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy), color = 7)
+
+```
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy), color = 4)
+
+```
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy), color = "#8B008B")
+
+```
+

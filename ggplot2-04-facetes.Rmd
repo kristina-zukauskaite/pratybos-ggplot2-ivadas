@@ -24,6 +24,7 @@ Funkcija facet_wrap()
 ggplot(data = mpg) + 
   geom_point(mapping = aes(x = displ, y = hwy)) + 
   facet_wrap(~ class, nrow = 2)
+# ~ reiškia "pagal kažkurią klasę". Neturėtų būti tolydusis kintamasis
 ```
 
 Funkcija facet_grid() - 1
@@ -32,6 +33,7 @@ Funkcija facet_grid() - 1
 ggplot(data = mpg) + 
   geom_point(mapping = aes(x = displ, y = hwy)) + 
   facet_grid(drv ~ cyl)
+# grid išdėsto pagal du kintamuosius, (eilutė ~ stulpeliai)
 ```
 
 Funkcija facet_grid() - 2
@@ -39,6 +41,7 @@ Funkcija facet_grid() - 2
 ```{r}
 t <- ggplot(mpg, aes(cty, hwy)) +
      geom_point()
+# galime priskirti kintamajam, taškas reiškia nieko.
 ```
 
 ```{r}
@@ -65,7 +68,7 @@ Užduotys: facetės
 1. Kas nutinka, jei facetes kuriame pagal tolydųjį kintamąjį?
 
 ```{r}
-
+t + facet_wrap(~ cty)
 ```
 
 2. Ką rodo tušti langeliai įvykdžius funkciją `facet_grid(drv ~ cyl)`? Kaip jie susiję su šiuo grafiku: 
@@ -111,11 +114,11 @@ ggplot(data = mpg) +
 
 
 5. Perskaitykite funkcijos aprašymą: `?facet_wrap`.
-    a. Kokią funkciją atlieka `nrow`? 
-    b. Kokią funkciją atlieka `ncol`? 
-    c. Kurios kitos funkcijos kontroliuoja facečių išdėstymą? 
-    d. Kodėl funkcija `facet_grid()` neturi parametrų `nrow` ir `ncol`?
-
-
-
+    a. Kokią funkciją atlieka `nrow`? # Number of rows. 
+    b. Kokią funkciją atlieka `ncol`? # Number of columns
+    c. Kurios kitos funkcijos kontroliuoja facečių išdėstymą? # scales, shrink, labeller, as. table, switch, drop, dir, strip.position.
+    d. Kodėl funkcija `facet_grid()` neturi parametrų `nrow` ir `ncol`? Nes ji formuoja matricą iš stulpelių ir eilučių. Geriausiai tinka, kai turime du diskrečius kintamuosius.
+```{r}
+?facet_wrap
+```
 6. Kokiu atveju naudodami `facet_grid()` kintamąjį su didesniu kiekiu skirtingų reikšmių (faktoriaus lygių) turėtumėte atvaizduoti facečių stulpeliuose? Kodėl?

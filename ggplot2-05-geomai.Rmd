@@ -114,10 +114,10 @@ Užduotys: Geomai
 ----------------------------------------------------------------------------- 
 
 1. Kurį geomą naudosite braižyti: 
-    * Linijų grafiką?
-    * Stačiakampę diagramą (boxplot)?
-    * Histogramą?
-    * Sklaidos diagramą (scatterplot)?
+    * Linijų grafiką? # geom_line()
+    * Stačiakampę diagramą (boxplot)? # geom_boxplot()
+    * Histogramą? # geom_histogram()
+    * Sklaidos diagramą (scatterplot)? # geom_scatter()
 
 2. **Mintimis** įvykdykite šį kodą ir nuspėkite rezultatą. Tik po to patikrinkite, ar jūsų mintys sutapo su tikruoju atsakymu.
 
@@ -130,13 +130,13 @@ ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = drv)) +
 3. Viename iš šio skyriaus grafikų buvo panaudotas argumentas `show.legend = FALSE`. Ką jis daro? Kas įvyksta jį pašalinus? Kodėl jis buvo naudotas ankstesniuose pavyzdžiuose?
 
 ```{r}
-
+# Jis neleidžia rodyti legendos, jeigu pašaliname, tuomet matome šalia grafiko esančią legendą.
 ```
 
 4. Ką atlieka `se` argumentas funkcijoje `geom_smooth()`?
 
 ```{r}
-
+# Uždedami pasikliautinumo intervalai
 ```
 
 5. Ar šie 2 grafikai atrodys skirtingai? Kodėl?
@@ -163,31 +163,45 @@ knitr::include_graphics("parasykite-koda-grafikams.png")
 
 ```{r}
 # Grafikas 1
-
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
+	geom_point() + 
+	geom_smooth()
 ```
 
 ```{r}
 # Grafikas 2
-
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy, group = drv)) + 
+	geom_point() + 
+	geom_smooth()
 ```
 
 ```{r}
 # Grafikas 3
-
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy, group = drv, color = drv)) + 
+	geom_point() + 
+	geom_smooth()
 ```
 
 ```{r}
 # Grafikas 4
-
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
+   geom_point(mapping = aes(color = drv)) + 
+   geom_smooth() 
 ```
 
 ```{r}
 # Grafikas 5
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = drv)) + 
+	geom_point() +
+    geom_smooth(mapping = aes(x = displ,
+                              y = hwy,
+                              linetype = drv, color = drv))  
 
 ```
 
 ```{r}
 # Grafikas 6
-
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = drv)) + 
+	geom_point() 
 ```
 

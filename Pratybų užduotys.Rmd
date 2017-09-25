@@ -1,0 +1,131 @@
+---
+title: "Užduotys iš pratybų puslapio"
+output: html_document
+---
+# Grafikų braižymo įvadas: „ggplot2“
+```{r}
+library(ggplot2)
+```
+```{r}
+data("iris")
+data("BOD")
+data("npk")
+data("Orange")
+data("swiss")
+```
+## Užduotis 4.1
+# Patikrinu duomenų lentelės struktūrą
+```{r}
+dim(iris)
+head(iris)
+tail(iris)
+str(iris)
+summary(iris)
+```
+```{r}
+dim(BOD)
+head(BOD)
+tail(BOD)
+str(BOD)
+summary(BOD)
+```
+```{r}
+dim(npk)
+head(npk)
+tail(npk)
+str(npk)
+summary(npk)
+```
+```{r}
+dim(Orange)
+head(Orange)
+tail(Orange)
+str(Orange)
+summary(Orange)
+```
+```{r}
+dim(swiss)
+head(swiss)
+tail(swiss)
+str(swiss)
+summary(swiss)
+```
+## Užduotis 4.2
+# 1 dalis
+```{r}
+data(npk)
+```
+```{r}
+# Histograma pagal kintamąjį yield
+ggplot(npk, aes(x = yield)) +
+geom_histogram(bins = 15)
+```
+```{r}
+# Branduolių tankio diagrama
+ggplot(npk, aes(x = yield)) +
+geom_density()
+```
+```{r}
+# Stačiakampė diagrama
+ggplot(npk, aes(x = block, y = yield)) +
+    geom_boxplot()
+```
+# 2 dalis
+```{r}
+# Histograma pagal kintamąjį yield
+ggplot(npk, aes(x = yield, color = block)) +
+geom_histogram(bins = 15)
+```
+```{r}
+# Branduolių tankio diagrama
+ggplot(npk, aes(x = yield, color = block)) +
+geom_density()
+```
+```{r}
+# Stačiakampė diagrama
+ggplot(npk, aes(x = block, y = yield, color = block)) +
+    geom_boxplot()
+```
+# 3 dalis
+```{r}
+data(swiss)
+```
+```{r}
+# Sklaidos diagrama
+ggplot(swiss, aes(x = Fertility, y = Education)) +
+geom_point()
+```
+```{r}
+# Sklaidos diagrama
+ggplot(swiss, aes(x = Fertility, y = Education, color = Agriculture)) +
+geom_point()
+```
+## 4.3 užduotis
+```{r}
+data(Orange)
+```
+```{r}
+# Sklaidos diagrama
+ggplot(Orange, aes(x = age, y = circumference)) +
+geom_point()
+```
+```{r}
+# Sklaidos diagrama, spalvomis atvaizduojama Tree
+gg3 <- ggplot(Orange, aes(x = age, y = circumference, color = Tree)) +
+geom_point()
+```
+```{r}
+# Lietuviškas grafiko pavadinimas
+grafikas <- gg3 + ggtitle("Apelsinų skersmens priklausomybė nuo amžiaus") +
+   labs(x = "amžius", y = "skersmuo", fill = "Medis") + theme_bw()
+```
+## 4.4 užduotis
+```{r}
+library(plotly)
+```
+```{r}
+ggplotly(grafikas)
+grafikas
+```
+
+
